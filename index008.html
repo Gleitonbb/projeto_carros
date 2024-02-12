@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>estudo de Class</title>
+
+    <style>
+        *{
+    padding: 0px;
+    margin-left: 30px;
+    border: none;
+    box-sizing: border-box;
+    font-size: large;
+}
+.campoForm{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-bottom: 10px;
+}
+.campoForm input{
+    background-color: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+.campoForm button{
+    background-color: #888;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+.res{
+    display: flex;
+    border: 3px solid #000;
+    width: 40%;
+    height: 150px;
+    padding: 8px;
+    border-radius: 5px;
+    color: rgb(199, 4, 4);
+}
+.pessoa{
+    border: 4px solid rgb(214, 68, 68);
+    display: flex;
+    border-radius: 5px;
+    width: 200px;
+    
+}
+.carro{
+    border: 3px solid rgb(170, 17, 17);
+    padding: 5px;
+}
+    </style>
+</head>
+<body>
+    <h1>como trocar class por function</h1>
+    <div class="campoForm">
+        <label>Marca</label>
+         <input type="text" name="f_marca" id="f_marca" value="">
+    </div>
+    <div class="campoForm">
+        <label>Modelo</label>
+        <input type="text" name="f_modelo" id="f_modelo" value="">
+    </div>
+    <div class="campoForm">
+        <label>Potencia</label>
+        <input type="text" name="f_potencia" id="f_potencia" value="">
+    </div>
+    <div class="campoForm">
+        <label>Cavalos</label>
+        <input type="text" name="f_cavalos" id="f_cavalos" value="">
+    </div>
+    <div class="campoForm">
+        <button id="btn-add">Adicionar</button>
+    </div>
+    <div class="res"></div>
+    <script>
+    class carro{
+        constructor(pmarca, pmodelo, pmotor,pcavalos){
+            this.marca = pmarca
+            this.modelo = pmodelo
+            this.motor = pmotor
+            this.cavalos = pcavalos
+        }
+        getMarca(){
+           return this.marca
+        }
+        getModelo(){
+            return this.modelo
+        }
+        getMotor(){
+            return this.motor 
+        }
+        getCavalos(){
+            return this.cavalos
+        }
+    }
+     
+    const addMarcas = () =>{
+        marcas.map((m)=>{
+            const Div = document.createElement("div")
+            Div.setAttribute("class","carro")
+            Div.innerHTML = `Marca:${m.getMarca()}<br/> modelo:${m.getModelo()}<br/> Potecia:${m.getMotor()}<br/> cavalos${m.getCavalos()}`
+            res.appendChild(Div)
+            
+        })
+
+    }
+      const marcas = []
+    const botao = document.querySelector("#btn-add")
+    const res = document.querySelector(".res")
+    botao.addEventListener("click",()=>{
+        const marca = document.querySelector("#f_marca")
+        const modelo = document.querySelector("#f_modelo")
+        const potencia = document.querySelector("#f_potencia")
+        const cavalos = document.querySelector("#f_cavalos")
+        const m = new carro(marca.value, modelo.value,potencia.value,cavalos.value)
+        marcas.push(m)
+
+        marca.value = ""
+        modelo.value = ""
+        potencia.value = ""
+        cavalos.value = ""
+        marca.focus()
+        modelo.focus()
+        potencia.focus()
+        cavalos.focus()
+        console.log(m)
+        if(m.getMarca() != "" && m.getModelo() != "" && m.getMotor() != "" && m.getCavalos != ""){
+        addMarcas()
+        }else{
+            alert("Digite os campos")
+        }
+
+    })
+        
+    </script>
+    
+</body>
+</html>
